@@ -1,0 +1,12 @@
+name: HelloWorld
+
+author: ML
+website:
+main: HelloWorldPlugin
+
+commands:
+    hello:
+        description: Say Hello to everyone!
+        usage: /hello
+
+version: 0.1
