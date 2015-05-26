@@ -9,4 +9,8 @@ commands:
         description: Say Hello to everyone!
         usage: /hello
 
+    killplayer:
+        description: Kills a specified player!
+        usage: /killplayer <playername>
+
 version: 0.1
