@@ -2,16 +2,22 @@
  * Created by martin on 12.05.15.
  */
 
+import java.util.HashSet;
 import java.util.logging.Logger;
-
+import java.util.Set;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class HelloWorldPlugin extends JavaPlugin {
+public class HelloWorldPlugin extends JavaPlugin implements Listener {
     public static Logger log = Logger.getLogger("Minecraft");
 
     public void onLoad() {
@@ -19,15 +25,12 @@ public class HelloWorldPlugin extends JavaPlugin {
     }
 
     public void onEnable() {
+        getServer().getPluginManager().registerEvents(this,this);
         log.info("[HelloWorldPlugin] Starting up...");
     }
 
     public void onDisable() {
         log.info("[HelloWorldPlugin] Stopping...");
-    }
-
-    public void onPlayerInteractBlock(PlayerInteractEvent event){
-
     }
 
     @Override
@@ -62,6 +65,8 @@ public class HelloWorldPlugin extends JavaPlugin {
             }
 
             // if player is online -> setHealth(0.0D)
+
+            opfer.getWorld().createExplosion(opfer.getLocation(), 4.0f );
             opfer.setHealth(0.0);
 
         }
@@ -70,4 +75,34 @@ public class HelloWorldPlugin extends JavaPlugin {
 
 
     }
+
+    @EventHandler
+    public void onPlayerInteractBlock(PlayerInteractEvent event) {
+        Player p = event.getPlayer();
+        //if(p.getItemInHand().getType() == Material.SEEDS) {
+
+            Block b = p.getTargetBlock((Set<Material>) null, 200);
+            Location loc = b.getLocation();
+            p.getWorld().strikeLightning(loc);
+
+        //}
+
+    }
+
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
