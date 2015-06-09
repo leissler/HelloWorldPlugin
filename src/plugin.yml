@@ -13,4 +13,16 @@ commands:
         description: Kills a specified player!
         usage: /killplayer <playername>
 
+    up:
+        description: Sends all players in a certain radius to the sky
+        usage: /up
+
+    flyingcreeper:
+        description: Spawns a flying creeper
+        usage: /flyingcreeper
+
+    stuck:
+        description: Traps a player inside a cage
+        usage: /stuck
+
 version: 0.1
